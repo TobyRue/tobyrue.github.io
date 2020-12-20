@@ -13,6 +13,14 @@
 		<meta name="msapplication-TileColor" content="#b91d47">
 		<meta name="msapplication-config" content="/assets/images/icons/browserconfig.xml">
 		<meta name="theme-color" content="#ffffff">
+		<script>
+			let select = q => {
+				let result = document.querySelectorAll(q);
+				return result.length === 1 ? result[0] : result;
+			}
+			let write = html => document.currentScript.insertAdjacentHTML('beforebegin', html);
+		</script>
+	
 	</head>
 	<body>
 		<h1>Hello World</h1>

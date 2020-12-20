@@ -24,11 +24,12 @@
 	</head>
 	<body>
 		<template id="my-template" name="my-template">
-			p: ***hello***
+			h1: ***hello***
+			h2: |hi|
 		</template>
 		<div>
 			<script>
-				write(SHML.parseMarkup(select('#my-template').innerHTML).toHTML())
+				write(SHML.parseMarkup(select('#my-template').innerHTML).toHTML());
 			</script>
 		</div>
 		<h1>Hello World</h1>

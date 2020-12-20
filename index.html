@@ -26,6 +26,11 @@
 		<template id="my-template" name="my-template">
 			p: ***hello***
 		</template>
+		<div>
+			<script>
+				write(SHML.parseMarkup(select('#my-template').innerHTML).toHTML())
+			</script>
+		</div>
 		<h1>Hello World</h1>
 		<h2>By:Toby Rue</h2>
 	</body>

@@ -14,6 +14,7 @@
 		<meta name="msapplication-config" content="/assets/images/icons/browserconfig.xml">
 		<meta name="theme-color" content="#ffffff">
 		<script src="/assets/javascript/shml.js"></script>
+		<script src="/assets/javascript/shml-region.js"></script>
 		<script>
 			let select = q => {
 				let result = document.querySelectorAll(q);
@@ -23,20 +24,11 @@
 		</script>
 	</head>
 	<body>
-		<template id="my-template" name="my-template">
+		<shml-region>
 			h1: ***hello***
 			h2: |hi|
-		</template>
-		<div>
-			<script>
-				write(SHML.parseMarkup(select('#my-template').innerHTML).toHTML());
-			</script>
-		</div>
-		<h1 class="shml">***Hello World***</h1>
-		<h2>By:Toby Rue</h2>
-		<script>
-			for(let e of document.querySelectorAll('.shml'))
-				e.innerHTML = SHML.parseMarkup(e.innerHTML).toHTML();
-		</script>
+			# ***Hello World***
+			## By: Toby Rue
+		</shml-region>
 	</body>
 </html>

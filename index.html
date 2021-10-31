@@ -3,7 +3,6 @@
 	<head>
 		<title>Toby Rue</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="/assets/css/w3.css">
 		<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/icons/apple-touch-icon.png">
 		<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/icons/favicon-32x32.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/icons/favicon-16x16.png">
@@ -19,13 +18,27 @@
 		<script>
 			let write = html => document.currentScript.insertAdjacentHTML('beforebegin', html);
 		</script>
+		<style>
+			html {
+				font-family: Arial;
+			}
+			body{
+				margin: 40px auto;
+				max-width: 650px;
+				line-height: 1.6;
+				font-size: 18px;
+				color: #444;
+				background-color: whitesmoke;
+			}
+			h1, h2, h3 {
+				line-height: 1.2;
+			}
+		</style>
 	</head>
 	<body>
 		<shml-region>
-			h1: ***hello***
-			h2: |hi|
-			# ***Hello World***
-			## By: Toby Rue
+			# TobyRue.github.io
+			p: Hello World! Welcome to my website.
 		</shml-region>
 	</body>
 </html>

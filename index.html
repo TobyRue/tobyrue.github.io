@@ -12,33 +12,34 @@
 		<meta name="msapplication-TileColor" content="#b91d47">
 		<meta name="msapplication-config" content="/assets/images/icons/browserconfig.xml">
 		<meta name="theme-color" content="#ffffff">
-		<script src="/assets/javascript/shml.js"></script>
-		<script src="/assets/javascript/shml-region.js"></script>
-		<script src="/assets/javascript/domlib.js"></script>
+		<script src="https://tobyrue.github.io/assets/javascript/shml.js"></script>
+		<script src="https://tobyrue.github.io/assets/javascript/shml-region.js"></script>
+		<script src="https://tobyrue.github.io/assets/javascript/domlib.js"></script>
 		<script>
 			let write = html => document.currentScript.insertAdjacentHTML('beforebegin', html);
 		</script>
-		<style>
-			html {
-				font-family: Arial;
-			}
-			body{
-				margin: 40px auto;
-				max-width: 650px;
-				line-height: 1.6;
-				font-size: 18px;
-				color: #444;
-				background-color: whitesmoke;
-			}
-			h1, h2, h3 {
-				line-height: 1.2;
-			}
-		</style>
+    <style>
+      html {
+        font-family: Arial;
+      }
+      body{
+        margin: 40px auto;
+        max-width: 650px;
+        line-height: 1.6;
+        font-size: 18px;
+        color: #444;
+        background-color: whitesmoke;
+      }
+      h1, h2, h3 {
+        line-height: 1.2;
+      }
+    </style>
 	</head>
 	<body>
 		<shml-region>
-			# TobyRue.github.io
+			# <img src="/assets/images/logo.png" style="width:1.25em;vertical-align: text-bottom;"> TobyRue.github.io
 			p: Hello World! Welcome to my website.
+     		p: *You can write markup inside this tag or use HTML. See the [docs](https://github.com/SteveBeeblebrox/SHML/blob/master/README.md) for more details.*
 		</shml-region>
 	</body>
 </html>

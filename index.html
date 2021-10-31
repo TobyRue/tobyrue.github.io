@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<title>Toby Rue</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,11 +15,8 @@
 		<meta name="theme-color" content="#ffffff">
 		<script src="/assets/javascript/shml.js"></script>
 		<script src="/assets/javascript/shml-region.js"></script>
+		<script src="/assets/javascript/domlib.js"></script>
 		<script>
-			let select = q => {
-				let result = document.querySelectorAll(q);
-				return result.length === 1 ? result[0] : result;
-			}
 			let write = html => document.currentScript.insertAdjacentHTML('beforebegin', html);
 		</script>
 	</head>

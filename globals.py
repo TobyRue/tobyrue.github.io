@@ -1,0 +1,1 @@
+TS='type="text/typescript"'

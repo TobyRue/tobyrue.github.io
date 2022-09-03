@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Coin Flipper</title>
+        <script src="/asssets/js/domlib.min.js?bind"></script>
+        <script src="/asssets/js/jsx.min.js"></script>
+        <style>
+            section {
+                margin-top: 3em;
+            }
+            @keyframes flip {
+                0% {
+                    transform: rotateX(0deg)
+                }
+                50% {
+                    transform: rotateX(180deg)
+                }
+                100% {
+                    transform: rotateX(360deg)
+                }
+            }
+            .flip {
+                animation: 0.75s linear 0s 2 both  flip;
+            }
+            span {
+                display: inline-block;
+                border-radius: 999999px;
+                background-color: gold;
+                padding: 1em;
+                height:2ch;
+                width:2ch;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <button>Flip</button>
+        <section><span>?</span></section>
+        <script>
+           $ `button`.$on('click', function () {
+               titleState.set('?');
+               $ `span`.classList.add('flip');
+               setTimeout(function () {
+                   $ `span`.classList.remove('flip');
+                   titleState.set(Math.random() > 0.5 ? 'H' : 'T');
+               }, 0.75 * 2 * 1000);
+           });
+           const initialTitle = document.title;
+           const titleState = JSX.createState('?');
+           titleState.connectCallback(function (value) {
+               document.title = initialTitle + ' (' + value + ')';
+               $ `span`.textContent = value;
+           });
+        </script>
+    </body>
+</html>

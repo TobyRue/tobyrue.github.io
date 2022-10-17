@@ -23,37 +23,44 @@
                 }
             }
             .flip {
-                animation: 0.75s linear 0s 2 both  flip;
+                animation: 0.75s linear 0s 2 both flip;
             }
             span {
                 display: inline-block;
                 border-radius: 999999px;
                 background-color: gold;
                 padding: 1em;
-                height:2ch;
-                width:2ch;
+                height: 2ch;
+                width: 2ch;
                 text-align: center;
+                border: 4px dashed goldenrod;
+                outline: 4px solid goldenrod;
+                box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+                font-family: monospace;
+                color: #333;
+                font-size: 20px;
             }
         </style>
     </head>
+
     <body>
         <button>Flip</button>
         <section><span>?</span></section>
         <script %{TS}>
-           $`button`.$on('click',function() {
-            titleState.set('?')
-            $`span`.classList.add('flip')
-            setTimeout(function() {
-                $`span`.classList.remove('flip')
-                titleState.set(Math.random() > 0.5 ? 'H' : 'T')
-            },0.75*2*1000)
-           }) 
-           const initialTitle = document.title;
-           const titleState=JSX.createState('?')
-           titleState.connectCallback(function(value) {
-            document.title=initialTitle+' ('+value+')';
-            $`span`.textContent=value
-           })
+            $$`button,span`.$forEach(e=>e.$on('click', function () {
+                titleState.set('?')
+                $`span`.classList.add('flip')
+                setTimeout(function () {
+                    $`span`.classList.remove('flip')
+                    titleState.set(Math.random() > 0.5 ? 'H' : 'T')
+                }, 0.75 * 2 * 1000)
+            }));
+            const initialTitle = document.title;
+            const titleState = JSX.createState('?')
+            titleState.connectCallback(function (value) {
+                document.title = initialTitle + ' (' + value + ')';
+                $`span`.textContent = value
+            });
         </script>
     </body>
 </html>

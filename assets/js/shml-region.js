@@ -1,12 +1,12 @@
-class SWLSHMLElement extends HTMLElement {
+class SHMLMarkdownElement extends HTMLElement {
+    static customTokens;
     connectedCallback() {
         window.requestAnimationFrame(() => {
-            let result = SHML.parseMarkup(this.innerHTML);
-            for(let key of result.getProperties())
-                this.dataset[key[0].toString().replace(/Symbol\((.*)\)/, '$1')] = key[1];
-            this.innerHTML = result.toHTML();
+            let result = SHML.parseMarkup(this.textContent ?? '', SHMLMarkdownElement.customTokens);
+            Object.assign(this.dataset,Object.fromEntries(result.properties.entries()));
+            this.innerHTML = result.toString();
         });
     }
 }
 
-window.customElements.define('shml-region', SWLSHMLElement);
+window.customElements.define('shml-region', SHMLMarkdownElement);

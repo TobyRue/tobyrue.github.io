@@ -12,8 +12,8 @@
 		<meta name="msapplication-TileColor" content="#b91d47">
 		<meta name="msapplication-config" content="/assets/images/icons/browserconfig.xml">
 		<meta name="theme-color" content="#ffffff">
-		<script src="https://tobyrue.github.io/assets/js/shml.js"></script>
-		<script src="https://tobyrue.github.io/assets/js/shml-region.js"></script>
+		<script src="/assets/js/shml.min.js"></script>
+		<script src="/assets/js/shml-region.js"></script>
 		<script>
 			let write = html => document.currentScript.insertAdjacentHTML('beforebegin', html);
 			SHMLMarkdownElement.customTokens = new Map(Object.entries({icon:'<img src="/assets/images/logo.png" style="width:1.25em;vertical-align: text-bottom;">'}));
@@ -42,7 +42,8 @@
 		<shml-region>
 			# :icon: TobyRue.github.io
 			Hello World! Welcome to my website.  
-     			*You can write markup inside this tag or use HTML. See the [docs](https://github.com/SteveBeeblebrox/SHML/blob/master/README.md) for more details.*
+     		*You can write markup inside this tag or use HTML. See the [https://github.com/SteveBeeblebrox/SHML/blob/master/README.md](docs) for more details.*  
+			&lt;?supprise?>
 		</shml-region>
 		<iframe src="coins.html" frameborder="0"></iframe>
 	</body>

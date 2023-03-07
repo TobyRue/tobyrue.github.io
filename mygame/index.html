@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="kitsunecore.min.js"></script>
+        <style>
+            body, html {
+                height: 100%;
+                margin: 0;
+                overflow: hidden;
+            }
+            body {
+                background-image: url('images/space.png');
+                background-repeat: repeat-x;
+                background-size: contain;
+                color: white;
+            }
+            [data-sprite] {
+                --x: 0;
+                --y: 0;
+                left: calc(var(--x) * 1%);
+                top: calc(var(--y) * 1%);
+                position: absolute;
+                image-rendering: pixelated;
+                height: 100px;
+                width: auto;
+            }
+            [data-sprite="defender"] {
+            
+            }
+            [data-sprite="projectile"] {
+                height: 25px;
+            }
+        </style>
+        <script>
+            function clamp(value, min, max) {
+                return Math.min(Math.max(value, min), max);
+            }
+            function toNum(text) {
+                var _a, _b;
+                return +((_b = (_a = text.match(/^\d+(?:\.\d+)?/)) === null || _a === void 0 ? void 0 : _a[0]) !== null && _b !== void 0 ? _b : 0);
+            }
+            function clampToScreen(sprite, axis) {
+                sprite[axis] = clamp(sprite[axis], 0, 100 - sprite[axis + 'Size']);
+            }
+            Object.defineProperty(Image.prototype, 'x', {
+                get() {
+                    return +this.style.getPropertyValue('--x');
+                },
+                set(value) {
+                    this.style.setProperty('--x', value);
+                }
+            });
+            Object.defineProperty(Image.prototype, 'y', {
+                get() {
+                    return +this.style.getPropertyValue('--y');
+                },
+                set(value) {
+                    this.style.setProperty('--y', value);
+                }
+            });
+            Object.defineProperty(Image.prototype, 'ySize', {
+                get() {
+                    return toNum(window.getComputedStyle(defender).height) / toNum(window.getComputedStyle(defender.parentElement).height) * 100;
+                }
+            });
+            Object.defineProperty(Image.prototype, 'xSize', {
+                get() {
+                    return toNum(window.getComputedStyle(defender).width) / toNum(window.getComputedStyle(defender.parentElement).width) * 100;
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <img data-sprite="defender" src="images/defender.png">
+        <script>
+            const DEFENDER_SPEED = 0.5, PROJECTILE_SPEED = 0.5, PROJECTILE_DELAY = 20;
+            const lives = JSX.createState(3), score = JSX.createState(0), level = JSX.createState(1);
+            const defender = $('[data-sprite="defender"]');
+            const projectiles = [];
+            let projectileCoolDown = 0;
+            defender.x = 50;
+            defender.y = 80;
+            let ticks = 0;
+            $ctx = JSX.createElement("h1", null,
+                "Lives: ",
+                lives,
+                " Score: ",
+                score,
+                " Level: ",
+                level);
+            function tick(ticks) {
+                if (Keybinds.isKeyDown('a') || Keybinds.isKeyDown('arrowleft')) {
+                    defender.x = defender.x - DEFENDER_SPEED;
+                }
+                if (Keybinds.isKeyDown('d') || Keybinds.isKeyDown('arrowright')) {
+                    defender.x = defender.x + DEFENDER_SPEED;
+                }
+                for (const projectile of projectiles) {
+                    if (projectile.y < 0)
+                        projectile.remove();
+                    projectile.y -= PROJECTILE_SPEED;
+                }
+                if (Keybinds.isKeyDown('space') && projectileCoolDown === 0) {
+                    const projectile = JSX.createElement("img", { src: "images/projectile.png", "data-sprite": "projectile" });
+                    projectile.x = defender.x + defender.xSize / 2;
+                    projectile.y = defender.y;
+                    defender.parentElement.appendChild(projectile);
+                    projectiles.push(projectile);
+                    projectileCoolDown = PROJECTILE_DELAY;
+                }
+                projectileCoolDown = Math.max(projectileCoolDown - 1, 0);
+                clampToScreen(defender, 'x');
+            }
+            setInterval(() => tick(ticks++), 50);
+        </script>
+    </body>
+</html>
